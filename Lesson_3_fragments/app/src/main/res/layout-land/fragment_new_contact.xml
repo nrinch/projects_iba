@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewContactFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="New Contact"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/name_ET"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttons_height"
+            android:layout_marginHorizontal="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:hint="Name"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+        <EditText
+            android:id="@+id/phoneNumber_ET"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttons_height"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:hint="Phone Number"
+            app:layout_constraintTop_toBottomOf="@id/name_ET" />
+
+
+        <EditText
+            android:id="@+id/About"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttons_height"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:hint="About"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumber_ET" />
+
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttons_height"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/button_save"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
