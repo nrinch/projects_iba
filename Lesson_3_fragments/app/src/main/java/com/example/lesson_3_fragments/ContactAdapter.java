@@ -14,10 +14,16 @@ import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-    ArrayList <Contact> list;
+    interface iClickItem{
+        public void onClickItem(Contact contact);
+    }
 
-    public ContactAdapter(ArrayList<Contact> list) {
+    ArrayList <Contact> list;
+    iClickItem iClickItem;
+
+    public ContactAdapter(ArrayList<Contact> list,iClickItem iClickItem) {
         this.list = list;
+        this.iClickItem= iClickItem;
     }
 
     @NonNull
@@ -43,16 +49,21 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         TextView shortName;
         TextView name;
+        View view;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
+            view =itemView;
             shortName = itemView.findViewById(R.id.short_name_TV);
             name = itemView.findViewById(R.id.name_TV);
         }
 
         public void bindValues(Contact contact){
-            shortName.setText(contact.name.charAt(0));
+            shortName.setText(String.valueOf(contact.name.charAt(0)));
             name.setText(contact.name);
+            view.setOnClickListener(view1 -> {
+                iClickItem.onClickItem(contact);
+            });
         }
     }
 }

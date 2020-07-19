@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lesson_3_fragments</string>
+    <string name="button_add">Добавить контакт</string>
+    <string name="button_save">Сохранить</string>
+    <string name="empty_fields">Некоторые поля пустые</string>
+</resources>
