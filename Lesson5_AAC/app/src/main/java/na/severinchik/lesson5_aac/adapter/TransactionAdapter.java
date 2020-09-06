@@ -33,17 +33,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @NonNull
     @Override
     public TransactionAdapter.TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = mInflater.inflate(R.layout.recycler_item,parent,false);
+        return new TransactionViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TransactionAdapter.TransactionViewHolder holder, int position) {
-
+            holder.bind(mTransactions.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(mTransactions!=null){
+            return mTransactions.size();
+        }else return 0;
     }
 
 
@@ -70,6 +73,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             } else {
                 type.setImageResource(R.drawable.ic_baseline_call_received_24);
             }
+
+            name.setText(transaction.name);
+            date.setText(convertFromLongToDate(transaction.date));
+            value.setText("$"+transaction.value);
+
         }
 
         private String convertFromLongToDate(long date) {

@@ -1,11 +1,22 @@
 package na.severinchik.lesson5_aac.entity;
 
-public class Transaction {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "transaction")
+public class Transaction {
+    @PrimaryKey(autoGenerate = true)
     int uid;
-    String name;
-    long date;
+    public String name;
+    public long date;
     public boolean type;
-    float value;
+    public float value;
+
+    public Transaction(String name, long date, boolean type, float value) {
+        this.name = name;
+        this.date = date;
+        this.type = type;
+        this.value = value;
+    }
 
 }
