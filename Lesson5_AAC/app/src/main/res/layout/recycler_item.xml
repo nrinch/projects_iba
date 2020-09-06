@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:layout_margin="6dp"
+    android:background="@drawable/item_background">
+
+    <ImageView
+        android:id="@+id/type_transaction"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/small_margin"
+        android:padding="12dp"
+        android:src="@drawable/ic_baseline_call_made_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_vertical"
+        android:text="@string/name_transaction"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/type_transaction"
+        app:layout_constraintTop_toTopOf="@id/type_transaction" />
+
+    <TextView
+        android:id="@+id/date_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:text="September,3"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toRightOf="@id/type_transaction"
+        app:layout_constraintTop_toBottomOf="@id/name_transaction" />
+
+    <TextView
+        android:id="@+id/value_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginRight="@dimen/small_margin"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_vertical"
+        android:text="+ $ 300.0"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

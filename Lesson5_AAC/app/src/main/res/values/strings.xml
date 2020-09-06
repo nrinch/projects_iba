@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lesson5_AAC</string>
+    <string name="total_balance">Total Balance</string>
+
+    <string name="balance_template">"$" %.2f%n </string>
+    <string name="name_transaction">Name transaction</string>
+</resources>
