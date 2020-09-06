@@ -12,8 +12,8 @@ import na.severinchik.lesson5_aac.entity.Transaction;
 
 @androidx.room.Database(entities = {Transaction.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
-
-    public TransactioDao transactioDao;
+    //public TransactioDao transactioDao;
+    public abstract TransactioDao transactioDao();
     private static Database INSTANCE;
 
     public static Database getINSTANCE(Application application) {
@@ -22,7 +22,8 @@ public abstract class Database extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(application.getBaseContext(),
                             Database.class,
-                            "database").addCallback(mDatabaseCallback)
+                            "database")
+//                            .addCallback(mDatabaseCallback)
                             .fallbackToDestructiveMigration()
                             .build();
                 }
@@ -48,7 +49,7 @@ public abstract class Database extends RoomDatabase {
         private TransactioDao transactioDao;
 
         AsyncInitDatabase(Database database){
-            transactioDao = database.transactioDao;
+            transactioDao = database.transactioDao();
         }
 
         @Override

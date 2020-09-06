@@ -4,4 +4,6 @@
 
     <string name="balance_template">"$" %.2f%n </string>
     <string name="name_transaction">Name transaction</string>
+    <string name="positive_value">"+ $" %.2f%n</string>
+    <string name="negative_value">"- $" %.2f%n</string>
 </resources>

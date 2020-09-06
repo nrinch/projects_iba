@@ -19,7 +19,7 @@ public class TransactionRepository {
 
     public TransactionRepository(Application application){
         Database database = Database.getINSTANCE(application);
-        transactioDao = database.transactioDao;
+        transactioDao = database.transactioDao();
         data = transactioDao.getAllTransactions();
     }
 
@@ -29,6 +29,10 @@ public class TransactionRepository {
 
     public LiveData<List<Transaction>> getTransactions(){
         return data;
+    }
+
+    public void delete(int uid){
+        new AsyncDeleteTransaction(transactioDao).execute(uid);
     }
 
     class AsyncInsertTransaction extends AsyncTask<Transaction,Void,Void>{
@@ -42,6 +46,22 @@ public class TransactionRepository {
         @Override
         protected Void doInBackground(Transaction... transactions) {
             transactioDao.insert(transactions[0]);
+            return null;
+        }
+    }
+
+    class AsyncDeleteTransaction extends AsyncTask<Integer,Void,Void>{
+
+        private TransactioDao transactioDao;
+
+        AsyncDeleteTransaction(TransactioDao transactioDao){
+            this.transactioDao =transactioDao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            transactioDao.delete(integers[0]);
             return null;
         }
     }

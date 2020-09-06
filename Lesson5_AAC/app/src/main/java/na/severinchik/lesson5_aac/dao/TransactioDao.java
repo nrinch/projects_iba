@@ -15,6 +15,9 @@ public interface TransactioDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Transaction transaction);
 
-    @Query("SELECT * FROM `transaction` ORDER BY uid DESC")
+    @Query("SELECT * from transaction_table ORDER BY name ASC")
     public LiveData<List<Transaction>> getAllTransactions();
+
+    @Query("DELETE  FROM transaction_table WHERE uid=:uid")
+    public void delete(int uid);
 }

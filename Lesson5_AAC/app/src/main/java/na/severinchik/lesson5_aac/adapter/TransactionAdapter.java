@@ -25,28 +25,35 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     private final LayoutInflater mInflater;
     private List<Transaction> mTransactions;
+    private final Context mContext;
 
     public TransactionAdapter(Context context) {
+        mContext = context;
         mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public TransactionAdapter.TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recycler_item,parent,false);
+        View view = mInflater.inflate(R.layout.recycler_item, parent, false);
         return new TransactionViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TransactionAdapter.TransactionViewHolder holder, int position) {
-            holder.bind(mTransactions.get(position));
+        holder.bind(mTransactions.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if(mTransactions!=null){
+        if (mTransactions != null) {
             return mTransactions.size();
-        }else return 0;
+        } else return 0;
+    }
+
+    public void setData(List<Transaction> transactions) {
+        mTransactions = transactions;
+        notifyDataSetChanged();
     }
 
 
@@ -56,7 +63,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         private final TextView date;
         private final TextView value;
         private final ImageView type;
-        private final String format = "MMM dd HH:mm";
+        private final String format = "MMMM d, HH:mm";
 
 
         public TransactionViewHolder(@NonNull View itemView) {
@@ -70,13 +77,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         private void bind(Transaction transaction) {
             if (transaction.type) {
                 type.setImageResource(R.drawable.ic_baseline_call_made_24);
+                value.setText(mContext.getString(R.string.positive_value, transaction.value));
             } else {
                 type.setImageResource(R.drawable.ic_baseline_call_received_24);
+                value.setText(mContext.getString(R.string.negative_value, transaction.value));
             }
-
             name.setText(transaction.name);
-            date.setText(convertFromLongToDate(transaction.date));
-            value.setText("$"+transaction.value);
+            if (transaction.date != -1) {
+                date.setText(convertFromLongToDate(transaction.date));
+            }
 
         }
 
@@ -84,7 +93,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             DateFormat formatter = new SimpleDateFormat(format);
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
             String dateFormatted = formatter.format(date);
-            return  dateFormatted;
+            return dateFormatted;
         }
 
 
