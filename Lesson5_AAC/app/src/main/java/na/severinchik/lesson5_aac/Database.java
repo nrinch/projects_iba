@@ -1,6 +1,7 @@
 package na.severinchik.lesson5_aac;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.room.Room;
@@ -12,7 +13,6 @@ import na.severinchik.lesson5_aac.entity.Transaction;
 
 @androidx.room.Database(entities = {Transaction.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
-    //public TransactioDao transactioDao;
     public abstract TransactioDao transactioDao();
     private static Database INSTANCE;
 
@@ -32,7 +32,21 @@ public abstract class Database extends RoomDatabase {
         return INSTANCE;
     }
 
-    ;
+    public static Database getInstanceWithContext(Context context){
+        if (INSTANCE == null) {
+            synchronized (Database.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context,
+                            Database.class,
+                            "database")
+//                            .addCallback(mDatabaseCallback)
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 
 
     private static RoomDatabase.Callback mDatabaseCallback = new RoomDatabase.Callback() {

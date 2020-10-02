@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="small_margin">12dp</dimen>
+    <dimen name="medium_margin">24dp</dimen>
     <dimen name="dialog_width">320dp</dimen>
+    <dimen name="dialog_text_size">24sp</dimen>
 </resources>

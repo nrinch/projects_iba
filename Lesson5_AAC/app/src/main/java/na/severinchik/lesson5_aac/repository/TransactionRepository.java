@@ -1,6 +1,7 @@
 package na.severinchik.lesson5_aac.repository;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
@@ -23,12 +24,24 @@ public class TransactionRepository {
         data = transactioDao.getAllTransactions();
     }
 
+    public TransactionRepository(Context context){
+        Database database = Database.getInstanceWithContext(context);
+        transactioDao = database.transactioDao();
+        data = transactioDao.getAllTransactions();
+    }
+
+
+
     public void insert(Transaction transaction){
         new AsyncInsertTransaction(transactioDao).execute(transaction);
     }
 
     public LiveData<List<Transaction>> getTransactions(){
         return data;
+    }
+
+    public List<Transaction> getListTransactions(){
+        return transactioDao.getTransactionList();
     }
 
     public void delete(int uid){
